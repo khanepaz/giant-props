@@ -320,19 +320,29 @@
       background: #000;
       border-radius: 1rem;
       overflow: hidden;
-      aspect-ratio: 16/10;
       display: flex;
       align-items: center;
       justify-content: center;
+      max-height: 65vh;
     }
 
     #galleryModal .modal-img-wrap img {
+      display: block;
+      width: auto;
+      height: auto;
       max-width: 100%;
-      max-height: 100%;
+      max-height: 65vh;
       object-fit: contain;
     }
 
     #galleryModal .btn-close { filter: invert(1); }
+
+    @media (max-width: 576px) {
+      #galleryModal .modal-img-wrap,
+      #galleryModal .modal-img-wrap img {
+        max-height: 45vh;
+      }
+    }
 
     /* ============ Buttons ============ */
     .btn-gradient {
@@ -573,7 +583,7 @@
 
   <!-- Gallery modal: opens on click with the full image + description -->
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
       <div class="modal-content p-2">
         <div class="modal-header border-0">
           <h5 class="modal-title fw-bold" id="galleryModalTitle"></h5>
