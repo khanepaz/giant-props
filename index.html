@@ -7,10 +7,10 @@
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  
+
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -18,12 +18,18 @@
     :root {
       --primary: #ff2e63;
       --secondary: #08d9d6;
-      --dark: #0f0f13;
-      --card-bg: #1a1a22;
+      --amber: #ffb703;
+      --dark: #0b0b0f;
+      --panel: #131318;
+      --card-bg: #17171f;
+      --muted: #9a9aa8;
+      --nav-h: 76px;
     }
 
-    * {
-      font-family: 'Vazirmatn', sans-serif;
+    * { font-family: 'Vazirmatn', sans-serif; }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -36,92 +42,149 @@
       font-family: 'Space Grotesk', 'Vazirmatn', sans-serif;
     }
 
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f0f13 0%, #1a1a2e 50%, #16213e 100%);
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,46,99,0.15) 0%, transparent 70%);
-      top: -200px;
-      right: -200px;
-      border-radius: 50%;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(8,217,214,0.12) 0%, transparent 70%);
-      bottom: -150px;
-      left: -150px;
-      border-radius: 50%;
+    section[id] {
+      scroll-margin-top: var(--nav-h);
     }
 
     .gradient-text {
-      background: linear-gradient(90deg, #ff2e63, #08d9d6);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    /* Carousel */
-    .carousel-item img {
-      height: 70vh;
-      object-fit: cover;
-      border-radius: 1rem;
+    /* ============ Navbar ============ */
+    .navbar {
+      background: rgba(11, 11, 15, 0.82) !important;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      height: var(--nav-h);
     }
 
-    .carousel-caption {
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(8px);
-      border-radius: 1rem;
-      padding: 1.5rem 2rem;
-      bottom: 2rem;
+    .nav-link {
+      color: #ccc !important;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.25s;
+      cursor: pointer;
     }
 
-    /* Gallery Cards */
-    .gallery-card {
-      background: var(--card-bg);
-      border-radius: 1.2rem;
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      right: 0.5rem;
+      left: 0.5rem;
+      bottom: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ============ Hero — compact, product-led ============ */
+    .hero {
+      padding-top: calc(var(--nav-h) + 2.5rem);
+      padding-bottom: 3rem;
+      background:
+        radial-gradient(560px 420px at 88% -10%, rgba(255,46,99,0.16), transparent 65%),
+        radial-gradient(500px 400px at -10% 100%, rgba(8,217,214,0.12), transparent 65%),
+        linear-gradient(180deg, #0b0b0f 0%, #121218 100%);
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero-eyebrow .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 10px var(--secondary);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p.lead {
+      font-size: 1.05rem;
+      max-width: 480px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.2rem;
+      margin-top: 2rem;
+    }
+
+    .hero-stats .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-stats .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* the "scale" visual: a product photo with a dimension line, so the
+       hero shows a product instead of just typography */
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 1.4rem;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(255,255,255,0.05);
-      height: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
     }
 
-    .gallery-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 25px 50px -12px rgba(255, 46, 99, 0.25);
-      border-color: rgba(255, 46, 99, 0.3);
-    }
-
-    .gallery-card img {
-      height: 280px;
+    .hero-visual img {
+      width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
-      width: 100%;
+      display: block;
     }
 
-    .gallery-card:hover img {
-      transform: scale(1.08);
+    .hero-visual .dim-tag {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(11,11,15,0.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .gallery-card .card-body {
-      padding: 1.5rem;
-    }
+    .hero-visual .dim-tag .fill { color: var(--secondary); font-weight: 700; }
 
-    /* Section Titles */
+    /* ============ Section titles ============ */
     .section-title {
       position: relative;
       display: inline-block;
@@ -139,23 +202,142 @@
       border-radius: 2px;
     }
 
-    /* Navbar */
-    .navbar {
-      background: rgba(15, 15, 19, 0.85) !important;
-      backdrop-filter: blur(12px);
+    /* ============ About ============ */
+    #about { background: var(--panel); }
+
+    .about-img {
+      position: relative;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ============ Featured carousel — letterboxed so nothing overflows ============ */
+    .carousel-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 25px 50px -20px rgba(0,0,0,0.65);
     }
 
-    .nav-link {
-      color: #ccc !important;
-      font-weight: 500;
-      transition: color 0.3s;
+    @media (max-width: 768px) {
+      .carousel-frame { aspect-ratio: 4/5; }
     }
 
-    .nav-link:hover {
-      color: var(--secondary) !important;
+    .carousel-item { height: 100%; }
+
+    .carousel-item .bg-blur {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(28px) brightness(0.5) saturate(1.2);
+      transform: scale(1.15);
     }
 
-    /* Buttons */
+    .carousel-item .fg-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .carousel-caption {
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 1rem;
+      padding: 1.1rem 1.6rem;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      left: 1.2rem;
+      text-align: right;
+    }
+
+    .carousel-control-prev, .carousel-control-next { width: 8%; }
+
+    /* ============ Gallery ============ */
+    .gallery-card {
+      background: var(--card-bg);
+      border-radius: 1.2rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.05);
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -16px rgba(255, 46, 99, 0.25);
+      border-color: rgba(255, 46, 99, 0.3);
+    }
+
+    .gallery-card .img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .gallery-card img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .gallery-card:hover img { transform: scale(1.06); }
+
+    .gallery-card .img-wrap::after {
+      content: '\F52A';
+      font-family: 'bootstrap-icons';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #fff;
+      background: rgba(11,11,15,0.35);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-card:hover .img-wrap::after { opacity: 1; }
+
+    .gallery-card .card-body { padding: 1.4rem; }
+
+    /* ============ Gallery modal ============ */
+    #galleryModal .modal-content {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.2rem;
+    }
+
+    #galleryModal .modal-img-wrap {
+      background: #000;
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #galleryModal .modal-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    #galleryModal .btn-close { filter: invert(1); }
+
+    /* ============ Buttons ============ */
     .btn-gradient {
       background: linear-gradient(90deg, var(--primary), #ff6b6b);
       border: none;
@@ -172,13 +354,57 @@
       color: white;
     }
 
-    /* Footer */
+    /* ============ Contact / CTA ============ */
+    #contact { background: var(--panel); }
+
+    /* ============ Footer — social row instead of a single CTA button ============ */
     footer {
-      background: #0a0a0e;
+      background: #08080b;
       border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2.6rem 0 1.6rem;
     }
 
-    /* Loading */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+
+    .social-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eaeaea;
+      font-size: 1.3rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-btn span.txt {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-4px);
+      color: #fff;
+    }
+
+    .social-btn.linkedin:hover { border-color: #0A66C2; color: #0A66C2; }
+    .social-btn.phone:hover { border-color: var(--secondary); color: var(--secondary); }
+    .social-btn.gmail:hover { border-color: #EA4335; color: #EA4335; }
+    .social-btn.whatsapp:hover { border-color: #25D366; color: #25D366; }
+    .social-btn.bale:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ============ Loading ============ */
     .loading {
       min-height: 400px;
       display: flex;
@@ -186,14 +412,8 @@
       justify-content: center;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 768px) {
-      .carousel-item img {
-        height: 50vh;
-      }
-      .hero h1 {
-        font-size: 2.8rem !important;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
@@ -221,20 +441,44 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container position-relative" style="z-index: 2;">
-      <div class="row align-items-center">
-        <div class="col-lg-8">
-          <h1 class="display-2 fw-black mb-4">
-            ساخت <span class="gradient-text">غول‌پیکر</span><br>
-            از تخیل تا واقعیت
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="hero-eyebrow"><span class="dot"></span> ساخت وسایل نمایشگاهی و تبلیغاتی</div>
+          <h1>
+            وسایل <span class="gradient-text">غول‌پیکر</span> می‌سازم؛<br>
+            دقیقاً همون چیزی که تصور کردی.
           </h1>
-          <p class="lead mb-5 opacity-75" style="max-width: 600px;">
-            ما وسایل صحنه، تبلیغاتی و نمایشگاهی غول‌آسا می‌سازیم.  
-            هر چیزی که فکرش رو بکنی، می‌تونیم در مقیاس بزرگ و با جزئیات بالا برات بسازیم.
+          <p class="lead opacity-75">
+            از یه ایده ساده تا یه سازه چند متری که همه رو متوقف می‌کنه؛
+            هر پروژه رو با جزئیات واقعی و مقیاس دقیق می‌سازم.
           </p>
-          <a href="#gallery" class="btn btn-gradient btn-lg">
-            ببین کارهای منو <i class="bi bi-arrow-down ms-2"></i>
+          <a href="#gallery" class="btn btn-gradient btn-lg mt-2">
+            دیدن نمونه‌کارها <i class="bi bi-arrow-down-left ms-1"></i>
           </a>
+
+          <div class="hero-stats">
+            <div>
+              <div class="num">+40</div>
+              <div class="label">پروژه ساخته‌شده</div>
+            </div>
+            <div>
+              <div class="num">۵ سال</div>
+              <div class="label">تجربه ساخت</div>
+            </div>
+            <div>
+              <div class="num">۱۰۰٪</div>
+              <div class="label">سفارشی</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="hero-visual">
+            <img id="heroVisualImg" src="images/1.jpg" alt="نمونه کار غول‌پیکر"
+                 onerror="this.src='https://picsum.photos/id/1015/800/1000'">
+            <div class="dim-tag"><i class="bi bi-arrows-vertical"></i> ارتفاع <span class="fill">۳.۵ متر</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -247,7 +491,7 @@
         <div class="col-lg-5">
           <h2 class="section-title display-6 fw-bold">چرا غول‌پیکر؟</h2>
           <p class="mb-4 opacity-75">
-            وقتی چیزی رو در مقیاس خیلی بزرگ می‌بینی، ناخودآگاه جذبش می‌شی.  
+            وقتی چیزی رو در مقیاس خیلی بزرگ می‌بینی، ناخودآگاه جذبش می‌شی.
             این قدرت غول‌پیکرهاست. من با عشق و دقت، وسایلی می‌سازم که نه فقط بزرگ باشن، بلکه حس و حال خاصی منتقل کنن.
           </p>
           <ul class="list-unstyled">
@@ -258,7 +502,9 @@
           </ul>
         </div>
         <div class="col-lg-7">
-          <img src="images/1.jpg" class="img-fluid rounded-4 shadow-lg" alt="نمونه کار" onerror="this.src='https://picsum.photos/id/1015/900/600'">
+          <div class="about-img">
+            <img src="images/1.jpg" alt="نمونه کار" onerror="this.src='https://picsum.photos/id/1015/900/600'">
+          </div>
         </div>
       </div>
     </div>
@@ -273,23 +519,22 @@
       </div>
 
       <div id="featuredCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner rounded-4 overflow-hidden shadow-lg" id="carousel-inner">
-          <!-- پر می‌شود توسط جاوااسکریپت از data.json -->
-          <div class="loading text-center w-100">
-            <div class="spinner-border text-info" role="status"></div>
+        <div class="carousel-frame">
+          <div class="carousel-inner h-100" id="carousel-inner">
+            <div class="loading text-center w-100">
+              <div class="spinner-border text-info" role="status"></div>
+            </div>
           </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <div class="carousel-indicators" id="carousel-indicators">
-          <!-- پر می‌شود توسط جاوااسکریپت -->
-        </div>
+        <div class="carousel-indicators position-relative mt-3" id="carousel-indicators" style="bottom:auto;"></div>
       </div>
     </div>
   </section>
@@ -299,11 +544,10 @@
     <div class="container py-5">
       <div class="text-center mb-5">
         <h2 class="section-title display-6 fw-bold">گالری آثار</h2>
-        <p class="opacity-75">همه پروژه‌ها رو اینجا می‌بینی</p>
+        <p class="opacity-75">روی هر عکس بزن تا بزرگ‌تر ببینیش</p>
       </div>
 
       <div class="row g-4" id="gallery-grid">
-        <!-- پر می‌شود توسط جاوااسکریپت از data.json -->
         <div class="col-12 loading">
           <div class="spinner-border text-info" role="status"></div>
         </div>
@@ -311,12 +555,30 @@
     </div>
   </section>
 
+  <!-- Gallery modal: opens on click with the full image + description -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="galleryModalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="modal-img-wrap mb-3">
+            <img id="galleryModalImg" src="" alt="">
+          </div>
+          <p class="opacity-75 mb-0" id="galleryModalDesc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Contact / CTA -->
   <section id="contact" class="py-5">
     <div class="container py-5 text-center">
       <h2 class="display-5 fw-bold mb-4">ایده‌ای داری؟</h2>
       <p class="lead opacity-75 mb-5 mx-auto" style="max-width: 600px;">
-        اگه می‌خوای یه وسیله غول‌پیکر برای فیلم، تبلیغات، ایونت یا نمایشگاه داشته باشی،  
+        اگه می‌خوای یه وسیله غول‌پیکر برای فیلم، تبلیغات، ایونت یا نمایشگاه داشته باشی،
         بهم پیام بده. با هم می‌سازیمش.
       </p>
       <a href="mailto:your-email@example.com" class="btn btn-gradient btn-lg px-5">
@@ -326,8 +588,25 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-4">
+  <footer>
     <div class="container text-center">
+      <div class="social-row">
+        <a class="social-btn linkedin" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener" title="لینکدین">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a class="social-btn phone" href="tel:+989120000000" title="تماس تلفنی">
+          <i class="bi bi-telephone-fill"></i>
+        </a>
+        <a class="social-btn gmail" href="mailto:your-email@example.com" title="ایمیل">
+          <i class="bi bi-envelope-fill"></i>
+        </a>
+        <a class="social-btn whatsapp" href="https://wa.me/989120000000" target="_blank" rel="noopener" title="واتساپ">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+        <a class="social-btn bale" href="https://ble.im/your-username" target="_blank" rel="noopener" title="بله">
+          <span class="txt">بله</span>
+        </a>
+      </div>
       <p class="mb-0 opacity-50 small">
         © ۱۴۰۵ — ساخته شده با عشق برای وسایل غول‌پیکر
       </p>
@@ -346,6 +625,12 @@
         const response = await fetch('data.json');
         const data = await response.json();
 
+        // --- ست‌کردن تصویر اصلی هیرو با اولین آیتم ویژه (اگه وجود داشت) ---
+        if (data.featured && data.featured.length) {
+          const heroImg = document.getElementById('heroVisualImg');
+          heroImg.src = `images/${data.featured[0].image}`;
+        }
+
         // --- کاروسل ویژه ---
         const carouselInner = document.getElementById('carousel-inner');
         const indicators = document.getElementById('carousel-indicators');
@@ -353,20 +638,22 @@
         indicators.innerHTML = '';
 
         data.featured.forEach((item, index) => {
-          // اسلاید
+          const imgUrl = `images/${item.image}`;
+          const fallbackUrl = `https://picsum.photos/id/${1016 + index}/1400/900`;
+
           const slide = document.createElement('div');
-          slide.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+          slide.className = `carousel-item h-100 ${index === 0 ? 'active' : ''}`;
           slide.innerHTML = `
-            <img src="images/${item.image}" class="d-block w-100" alt="${item.title}" 
-                 onerror="this.src='https://picsum.photos/id/${1016 + index}/1400/800'">
+            <div class="bg-blur" style="background-image:url('${imgUrl}')"></div>
+            <img src="${imgUrl}" class="fg-img" alt="${item.title}"
+                 onerror="this.src='${fallbackUrl}'; this.previousElementSibling.style.backgroundImage='url(${fallbackUrl})'">
             <div class="carousel-caption">
-              <h3 class="fw-bold">${item.title}</h3>
-              <p class="mb-0">${item.description}</p>
+              <h3 class="fw-bold h5 mb-1">${item.title}</h3>
+              <p class="mb-0 small">${item.description}</p>
             </div>
           `;
           carouselInner.appendChild(slide);
 
-          // اندیکاتور
           const indicator = document.createElement('button');
           indicator.type = 'button';
           indicator.setAttribute('data-bs-target', '#featuredCarousel');
@@ -380,12 +667,16 @@
         galleryGrid.innerHTML = '';
 
         data.gallery.forEach((item) => {
+          const fallbackUrl = `https://picsum.photos/id/${1040 + Math.floor(Math.random() * 20)}/800/600`;
+          const imgUrl = `images/${item.image}`;
+
           const col = document.createElement('div');
           col.className = 'col-md-6 col-lg-4';
           col.innerHTML = `
-            <div class="gallery-card">
-              <img src="images/${item.image}" alt="${item.title}"
-                   onerror="this.src='https://picsum.photos/id/${1040 + Math.floor(Math.random()*20)}/600/400'">
+            <div class="gallery-card" data-title="${item.title}" data-desc="${item.description}" data-img="${imgUrl}" data-fallback="${fallbackUrl}">
+              <div class="img-wrap">
+                <img src="${imgUrl}" alt="${item.title}" onerror="this.src='${fallbackUrl}'">
+              </div>
               <div class="card-body">
                 <h5 class="fw-bold mb-2">${item.title}</h5>
                 <p class="small opacity-75 mb-0">${item.description}</p>
@@ -393,6 +684,24 @@
             </div>
           `;
           galleryGrid.appendChild(col);
+        });
+
+        // --- باز کردن مودال با کلیک روی هر کارت گالری ---
+        const galleryModalEl = document.getElementById('galleryModal');
+        const galleryModal = new bootstrap.Modal(galleryModalEl);
+        const modalImg = document.getElementById('galleryModalImg');
+        const modalTitle = document.getElementById('galleryModalTitle');
+        const modalDesc = document.getElementById('galleryModalDesc');
+
+        galleryGrid.querySelectorAll('.gallery-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const shownImg = card.querySelector('img');
+            modalImg.src = shownImg.currentSrc || shownImg.src;
+            modalImg.alt = card.dataset.title;
+            modalTitle.textContent = card.dataset.title;
+            modalDesc.textContent = card.dataset.desc;
+            galleryModal.show();
+          });
         });
 
       } catch (error) {
@@ -405,8 +714,23 @@
       }
     }
 
-    // اجرا بعد از لود صفحه
-    document.addEventListener('DOMContentLoaded', loadProjects);
+    // بستن منوی موبایل بعد از کلیک روی هر لینک (اسکرول به بخش خودش با scroll-margin-top انجام میشه)
+    function setupNav() {
+      const navMenu = document.getElementById('navMenu');
+      const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navMenu, { toggle: false });
+      document.querySelectorAll('#navMenu .nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (navMenu.classList.contains('show')) {
+            bsCollapse.hide();
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+      setupNav();
+    });
   </script>
 </body>
 </html>
