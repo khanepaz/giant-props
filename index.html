@@ -278,12 +278,23 @@
       position: relative;
       overflow: hidden;
       height: 280px;
+      background: #000;
+    }
+
+    .gallery-card .img-wrap .bg-blur {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.45) saturate(1.2);
+      transform: scale(1.15);
     }
 
     .gallery-card img {
+      position: relative;
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.5s ease;
       display: block;
     }
@@ -300,9 +311,10 @@
       justify-content: center;
       font-size: 1.6rem;
       color: #fff;
-      background: rgba(11,11,15,0.35);
+      background: rgba(11,11,15,0.25);
       opacity: 0;
       transition: opacity 0.3s ease;
+      z-index: 1;
     }
 
     .gallery-card:hover .img-wrap::after { opacity: 1; }
@@ -718,7 +730,9 @@
           col.innerHTML = `
             <div class="gallery-card" data-title="${item.title}" data-desc="${item.description}" data-img="${imgUrl}" data-fallback="${fallbackUrl}">
               <div class="img-wrap">
-                <img src="${imgUrl}" alt="${item.title}" onerror="this.src='${fallbackUrl}'">
+                <div class="bg-blur" style="background-image:url('${imgUrl}')"></div>
+                <img src="${imgUrl}" alt="${item.title}"
+                     onerror="this.src='${fallbackUrl}'; this.previousElementSibling.style.backgroundImage='url(${fallbackUrl})'">
               </div>
               <div class="card-body">
                 <h5 class="fw-bold mb-2">${item.title}</h5>
