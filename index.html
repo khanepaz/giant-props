@@ -28,10 +28,6 @@
 
     * { font-family: 'Vazirmatn', sans-serif; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       background-color: var(--dark);
       color: #eaeaea;
@@ -423,7 +419,7 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand fw-bold fs-4" href="#">
-        <span class="gradient-text">GIANT PROPS</span> 
+        <span class="gradient-text">GIANT</span> PROPS
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
@@ -475,8 +471,7 @@
 
         <div class="col-lg-6 order-1 order-lg-2">
           <div class="hero-visual">
-            <img id="heroVisualImg" src="images/1.jpg" alt="نمونه کار غول‌پیکر"
-                 onerror="this.src='https://picsum.photos/id/1015/800/1000'">
+            <img id="heroVisualImg" alt="نمونه کار غول‌پیکر">
             <div class="dim-tag"><i class="bi bi-arrows-vertical"></i> ارتفاع <span class="fill">۳.۵ متر</span></div>
           </div>
         </div>
@@ -503,7 +498,7 @@
         </div>
         <div class="col-lg-7">
           <div class="about-img">
-            <img src="images/1.jpg" alt="نمونه کار" onerror="this.src='https://picsum.photos/id/1015/900/600'">
+            <img id="aboutImg" alt="نمونه کار">
           </div>
         </div>
       </div>
@@ -620,15 +615,32 @@
     // ============================================
     // این بخش از فایل data.json می‌خونه
     // ============================================
+    // اگه آدرس عکس از data.json لود نشد، یه عکس جایگزین می‌ذاریم تا صفحه خراب نمونه
+    function setImageWithFallback(imgEl, src, seed) {
+      imgEl.onerror = () => {
+        imgEl.onerror = null;
+        imgEl.src = `https://picsum.photos/id/${1015 + seed}/900/1100`;
+      };
+      imgEl.src = src;
+    }
+
     async function loadProjects() {
       try {
         const response = await fetch('data.json');
         const data = await response.json();
 
-        // --- ست‌کردن تصویر اصلی هیرو با اولین آیتم ویژه (اگه وجود داشت) ---
+        // --- ست‌کردن عکس‌های هیرو و درباره‌ما، هر دو مستقیم از data.json ---
+        const heroImg = document.getElementById('heroVisualImg');
+        const aboutImg = document.getElementById('aboutImg');
+
         if (data.featured && data.featured.length) {
-          const heroImg = document.getElementById('heroVisualImg');
-          heroImg.src = `images/${data.featured[0].image}`;
+          setImageWithFallback(heroImg, `images/${data.featured[0].image}`, 0);
+          // اگه آیتم ویژه دوم وجود داشت برای بخش «درباره» ازش استفاده می‌کنیم،
+          // وگرنه از اولین عکس گالری
+          const aboutSource = data.featured[1] || (data.gallery && data.gallery[0]);
+          if (aboutSource) {
+            setImageWithFallback(aboutImg, `images/${aboutSource.image}`, 1);
+          }
         }
 
         // --- کاروسل ویژه ---
@@ -714,12 +726,25 @@
       }
     }
 
-    // بستن منوی موبایل بعد از کلیک روی هر لینک (اسکرول به بخش خودش با scroll-margin-top انجام میشه)
+    // اسکرول به بخش موردنظر با احتساب ارتفاع واقعی نوبار (به جای تکیه به scroll-margin-top که با ارتفاع واقعی نوبار می‌تونه فرق کنه)
     function setupNav() {
+      const navbar = document.querySelector('.navbar');
       const navMenu = document.getElementById('navMenu');
       const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navMenu, { toggle: false });
-      document.querySelectorAll('#navMenu .nav-link').forEach((link) => {
-        link.addEventListener('click', () => {
+
+      document.querySelectorAll('#navMenu .nav-link[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          const targetEl = document.querySelector(targetId);
+
+          if (targetEl) {
+            e.preventDefault();
+            const navHeight = navbar.getBoundingClientRect().height;
+            const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+            history.pushState(null, '', targetId);
+          }
+
           if (navMenu.classList.contains('show')) {
             bsCollapse.hide();
           }
