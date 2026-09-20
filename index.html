@@ -1,1162 +1,809 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giant Props | ساخت وسایل غول‌پیکر</title>
 
-  <title>GIANT PROPS | ساخت وسایل غول‌پیکر</title>
-  <meta name="description" content="طراحی و ساخت وسایل و پراپ‌های غول‌پیکر برای فیلم، تئاتر، تبلیغات و رویدادها | GIANT PROPS">
+ 
+<meta name="description" content="طراحی و ساخت وسایل و پراپ‌های غول‌پیکر برای فیلم، تئاتر، تبلیغات و رویدادها | GIANT PROPS">
 
-  <!-- Bootstrap -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- Bootstrap Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-  >
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-
   <style>
-
-    /* =========================================================
-       FORMIXO / GIANT PROPS
-       VISUAL SYSTEM
-       Black / White / Golden Yellow
-       ========================================================= */
-
     :root {
-
-      /* Brand Colors */
-      --yellow: #f5b21c;
-      --yellow-light: #ffc94f;
-      --yellow-dark: #d99300;
-
-      --black: #070707;
-      --black-2: #0d0d0d;
-      --black-3: #151515;
-      --black-4: #1c1c1c;
-
-      --white: #f5f5f2;
-      --white-soft: #ddddda;
-
-      --gray: #a4a4a0;
-      --gray-dark: #686864;
-
-      --border: rgba(255, 255, 255, 0.08);
-      --border-yellow: rgba(245, 178, 28, 0.45);
-
+      --primary: #ff2e63;
+      --secondary: #08d9d6;
+      --amber: #ffb703;
+      --dark: #0b0b0f;
+      --panel: #131318;
+      --card-bg: #17171f;
+      --muted: #9a9aa8;
       --nav-h: 76px;
-
-      --shadow:
-        0 25px 60px rgba(0, 0, 0, 0.55);
-
-      --shadow-yellow:
-        0 18px 45px rgba(245, 178, 28, 0.16);
     }
 
-
-    /* =========================================================
-       GLOBAL
-       ========================================================= */
-
-    * {
-      box-sizing: border-box;
-      font-family: "Vazirmatn", sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { font-family: 'Vazirmatn', sans-serif; }
 
     body {
-      margin: 0;
-      background:
-        radial-gradient(
-          circle at 85% 10%,
-          rgba(245, 178, 28, 0.06),
-          transparent 30%
-        ),
-        var(--black);
-
-      color: var(--white);
-
+      background-color: var(--dark);
+      color: #eaeaea;
       overflow-x: hidden;
     }
 
-    a {
-      text-decoration: none;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .brand-font {
-      font-family:
-        "Space Grotesk",
-        "Vazirmatn",
-        sans-serif;
+    h1, h2, h3, .display-font {
+      font-family: 'Space Grotesk', 'Vazirmatn', sans-serif;
     }
 
     section[id] {
       scroll-margin-top: var(--nav-h);
     }
 
-
-    /* =========================================================
-       TEXT
-       ========================================================= */
-
-    .brand-yellow {
-      color: var(--yellow);
-    }
-
     .gradient-text {
-
-      background:
-        linear-gradient(
-          100deg,
-          var(--yellow-dark),
-          var(--yellow-light)
-        );
-
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-
       background-clip: text;
     }
 
-
-    /* =========================================================
-       NAVBAR
-       ========================================================= */
-
+    /* ============ Navbar ============ */
     .navbar {
-
+      background: rgba(11, 11, 15, 0.82) !important;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       height: var(--nav-h);
+    }
 
+    .nav-link {
+      color: #ccc !important;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.25s;
+      cursor: pointer;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      right: 0.5rem;
+      left: 0.5rem;
+      bottom: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ============ Hero — compact, product-led ============ */
+    .hero {
+      padding-top: calc(var(--nav-h) + 2.5rem);
+      padding-bottom: 3rem;
       background:
-        rgba(7, 7, 7, 0.88) !important;
-
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,0.07);
-
-      z-index: 1000;
+        radial-gradient(560px 420px at 88% -10%, rgba(255,46,99,0.16), transparent 65%),
+        radial-gradient(500px 400px at -10% 100%, rgba(8,217,214,0.12), transparent 65%),
+        linear-gradient(180deg, #0b0b0f 0%, #121218 100%);
+      position: relative;
     }
 
-
-    .navbar-brand {
-
-      color: white !important;
-
-      font-family:
-        "Space Grotesk",
-        sans-serif;
-
-      font-weight: 800;
-
-      letter-spacing: 1.5px;
-    }
-
-
-    .brand-logo {
-
+    .hero-eyebrow {
       display: inline-flex;
-
       align-items: center;
-
-      gap: 10px;
+      gap: 0.5rem;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
 
+    .hero-eyebrow .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 10px var(--secondary);
+    }
 
-    .brand-mark {
-
-      width: 36px;
-      height: 36px;
-
-      border:
-        2px solid var(--yellow);
-
-      border-radius: 50%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      color: var(--yellow);
-
-      font-family:
-        "Space Grotesk",
-        sans-serif;
-
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
       font-weight: 800;
-
-      font-size: 18px;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
     }
 
+    .hero p.lead {
+      font-size: 1.05rem;
+      max-width: 480px;
+    }
 
-    .brand-text {
+    .hero-stats {
+      display: flex;
+      gap: 2.2rem;
+      margin-top: 2rem;
+    }
 
-      font-family:
-        "Space Grotesk",
-        sans-serif;
-
-      font-size: 1.1rem;
-
-      letter-spacing: 1.5px;
-
+    .hero-stats .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
       color: #fff;
     }
 
-
-    .brand-text span {
-      color: var(--yellow);
-    }
-
-
-    .nav-link {
-
-      color: #cfcfcb !important;
-
-      font-weight: 500;
-
-      position: relative;
-
-      transition:
-        color 0.25s ease;
-    }
-
-
-    .nav-link::after {
-
-      content: "";
-
-      position: absolute;
-
-      right: 0.7rem;
-      left: 0.7rem;
-
-      bottom: 2px;
-
-      height: 2px;
-
-      background: var(--yellow);
-
-      transform:
-        scaleX(0);
-
-      transform-origin: center;
-
-      transition:
-        transform 0.25s ease;
-    }
-
-
-    .nav-link:hover {
-
-      color: white !important;
-    }
-
-
-    .nav-link:hover::after {
-
-      transform:
-        scaleX(1);
-    }
-
-
-    .navbar-toggler {
-
-      border:
-        1px solid rgba(245,178,28,0.5);
-    }
-
-
-    .navbar-toggler:focus {
-
-      box-shadow:
-        0 0 0 0.2rem
-        rgba(245,178,28,0.15);
-    }
-
-
-    .navbar-toggler-icon {
-
-      filter:
-        invert(1);
-    }
-
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-
-    .hero {
-
-      min-height: calc(100vh - var(--nav-h));
-
-      display: flex;
-
-      align-items: center;
-
-      position: relative;
-
-      padding:
-        calc(var(--nav-h) + 3rem)
-        0
-        5rem;
-
-      overflow: hidden;
-
-      background:
-
-        linear-gradient(
-          135deg,
-          #070707 0%,
-          #0d0d0d 55%,
-          #111111 100%
-        );
-    }
-
-
-    /* Yellow geometric decoration */
-
-    .hero::before {
-
-      content: "";
-
-      position: absolute;
-
-      width: 380px;
-      height: 700px;
-
-      top: -100px;
-      left: -160px;
-
-      background:
-        var(--yellow);
-
-      transform:
-        rotate(18deg);
-
-      opacity: 0.07;
-
-      pointer-events: none;
-    }
-
-
-    .hero::after {
-
-      content: "";
-
-      position: absolute;
-
-      width: 260px;
-      height: 600px;
-
-      right: -160px;
-      bottom: -180px;
-
-      background:
-        var(--yellow);
-
-      transform:
-        rotate(28deg);
-
-      opacity: 0.06;
-
-      pointer-events: none;
-    }
-
-
-    .hero-content {
-
-      position: relative;
-
-      z-index: 2;
-    }
-
-
-    .hero-eyebrow {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      color:
-        var(--yellow);
-
-      font-size: 0.95rem;
-
-      font-weight: 600;
-
-      margin-bottom: 1.2rem;
-    }
-
-
-    .hero-eyebrow .dot {
-
-      width: 8px;
-      height: 8px;
-
-      border-radius: 50%;
-
-      background:
-        var(--yellow);
-
-      box-shadow:
-        0 0 15px
-        rgba(245,178,28,0.7);
-    }
-
-
-    .hero h1 {
-
-      font-size:
-        clamp(2.2rem, 5vw, 4.2rem);
-
-      line-height: 1.2;
-
-      font-weight: 900;
-
-      margin-bottom: 1.5rem;
-
-      letter-spacing: -1px;
-    }
-
-
-    .hero p.lead {
-
-      max-width: 600px;
-
-      color:
-        var(--gray);
-
-      font-size: 1.08rem;
-
-      line-height: 2;
-
-      margin-bottom: 2rem;
-    }
-
-
-    /* =========================================================
-       BUTTONS
-       ========================================================= */
-
-    .btn-brand {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      background:
-        var(--yellow);
-
-      color:
-        #080808;
-
-      border: none;
-
-      font-weight: 800;
-
-      padding:
-        0.85rem 1.8rem;
-
-      border-radius: 4px;
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
-    }
-
-
-    .btn-brand:hover {
-
-      background:
-        var(--yellow-light);
-
-      color:
-        #080808;
-
-      transform:
-        translateY(-3px);
-
-      box-shadow:
-        0 12px 30px
-        rgba(245,178,28,0.25);
-    }
-
-
-    .btn-outline-brand {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      background:
-        transparent;
-
-      color:
-        var(--white);
-
-      border:
-        1px solid
-        rgba(245,178,28,0.65);
-
-      font-weight: 600;
-
-      padding:
-        0.85rem 1.8rem;
-
-      border-radius: 4px;
-
-      transition:
-        all 0.25s ease;
-    }
-
-
-    .btn-outline-brand:hover {
-
-      background:
-        var(--yellow);
-
-      color:
-        #080808;
-
-      border-color:
-        var(--yellow);
-
-      transform:
-        translateY(-3px);
-    }
-
-
-    /* =========================================================
-       HERO STATS
-       ========================================================= */
-
-    .hero-stats {
-
-      display: flex;
-
-      gap: 2.8rem;
-
-      margin-top: 2.8rem;
-
-      flex-wrap: wrap;
-    }
-
-
-    .hero-stat {
-
-      position: relative;
-
-      padding-right: 1.2rem;
-    }
-
-
-    .hero-stat::before {
-
-      content: "";
-
-      position: absolute;
-
-      right: 0;
-      top: 4px;
-
-      width: 3px;
-      height: 35px;
-
-      background:
-        var(--yellow);
-    }
-
-
-    .hero-stats .num {
-
-      font-family:
-        "Space Grotesk",
-        sans-serif;
-
-      font-size: 1.7rem;
-
-      font-weight: 800;
-
-      color: white;
-    }
-
-
     .hero-stats .label {
-
-      color:
-        var(--gray);
-
-      font-size: 0.8rem;
-
-      margin-top: 2px;
+      font-size: 0.82rem;
+      color: var(--muted);
     }
 
-
-    /* =========================================================
-       HERO IMAGE
-       ========================================================= */
-
+    /* the "scale" visual: a product photo with a dimension line, so the
+       hero shows a product instead of just typography */
     .hero-visual {
-
-      /* position: relative; */
-
-      max-width: 520px;
-
-      margin: auto;
-
+      position: relative;
       aspect-ratio: 4 / 5;
-
-      border-radius: 3px;
-
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 1.4rem;
       overflow: hidden;
-
-      background:
-        #000;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-      box-shadow:
-        var(--shadow);
-
-      z-index: 2;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
     }
-
-
-    .hero-visual::before {
-
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      right: 0;
-
-      width: 8px;
-      height: 100%;
-
-      background:
-        var(--yellow);
-
-      z-index: 3;
-    }
-
 
     .hero-visual img {
-
-      width: 100%;
-      height: 100%;
-
+      width: 100%; height: 100%;
       object-fit: cover;
-
       display: block;
     }
-
 
     .hero-visual .dim-tag {
-
       position: absolute;
-
-      right: 1rem;
       bottom: 1rem;
-
-      padding:
-        0.6rem 1rem;
-
-      background:
-        rgba(0,0,0,0.78);
-
-      border:
-        1px solid
-        rgba(245,178,28,0.55);
-
-      color:
-        white;
-
-      font-size: 0.8rem;
-
-      border-radius: 3px;
-
-      backdrop-filter:
-        blur(8px);
-
-      z-index: 4;
+      right: 1rem;
+      background: rgba(11,11,15,0.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
+    .hero-visual .dim-tag .fill { color: var(--secondary); font-weight: 700; }
 
-    .hero-visual .dim-tag .fill {
-
-      color:
-        var(--yellow);
-
-      font-weight: 700;
-    }
-
-
-    /* =========================================================
-       SECTION
-       ========================================================= */
-
-    .section-dark {
-      background:
-        var(--black);
-    }
-
-
-    .section-panel {
-
-      background:
-        var(--black-2);
-    }
-
-
+    /* ============ Section titles ============ */
     .section-title {
-
       position: relative;
-
       display: inline-block;
-
-      font-weight: 800;
-
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
-
 
     .section-title::after {
-
-      content: "";
-
-      display: block;
-
-      width: 65px;
-      height: 4px;
-
-      margin-top: 13px;
-
-      background:
-        var(--yellow);
-
-      transform:
-        skewX(-25deg);
-    }
-
-
-    .section-subtitle {
-
-      color:
-        var(--gray);
-
-      max-width: 600px;
-
-      margin: auto;
-
-      line-height: 1.9;
-    }
-
-
-    /* =========================================================
-       ABOUT
-       ========================================================= */
-
-    #about {
-
-      background:
-        var(--black-2);
-
-      position: relative;
-
-      overflow: hidden;
-    }
-
-
-    #about::before {
-
-      content: "";
-
+      content: '';
       position: absolute;
-
-      width: 180px;
-      height: 100%;
-
-      right: -100px;
-      top: 0;
-
-      background:
-        var(--yellow);
-
-      opacity: 0.035;
-
-      transform:
-        skewX(-15deg);
-    }
-
-
-    .about-img {
-
-      /* position: relative; */
-
-      aspect-ratio: 4 / 3;
-
-      overflow: hidden;
-
-      border-radius: 3px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      background:
-        #000;
-    }
-
-
-    .about-img::after {
-
-      content: "";
-
-      position: absolute;
-
-      bottom: 0;
+      bottom: -10px;
       right: 0;
-
-      width: 100%;
-      height: 5px;
-
-      background:
-        var(--yellow);
-    }
-
-
-    .about-img img {
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-
-    .about-list {
-
-      margin-top: 1.8rem;
-    }
-
-
-    .about-list li {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      margin-bottom: 1rem;
-
-      color:
-        #d7d7d3;
-    }
-
-
-    .about-list i {
-
-      color:
-        var(--yellow);
-
-      font-size: 1.05rem;
-    }
-
-
-    /* =========================================================
-       FEATURED
-       ========================================================= */
-
-    #featured {
-
-      background:
-        #090909;
-    }
-
-
-    .carousel-frame {
-
-      position: relative;
-
-      aspect-ratio: 16 / 9;
-
-      overflow: hidden;
-
-      border-radius: 3px;
-
-      background:
-        #000;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      box-shadow:
-        var(--shadow);
-    }
-
-
-    .carousel-item {
-
-      height: 100%;
-    }
-
-
-    .carousel-item .bg-blur {
-
-      position: absolute;
-
-      inset: 0;
-
-      background-size: cover;
-
-      background-position: center;
-
-      filter:
-        blur(30px)
-        brightness(0.3)
-        saturate(0.7);
-
-      transform:
-        scale(1.15);
-    }
-
-
-    .carousel-item .fg-img {
-
-      position: relative;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: contain;
-
-      display: block;
-
-      margin: auto;
-    }
-
-
-    .carousel-caption {
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,0.92),
-          rgba(0,0,0,0.68)
-        );
-
-      border-right:
-        4px solid
-        var(--yellow);
-
-      padding:
-        1rem 1.4rem;
-
-      right: 1.5rem;
-      left: 1.5rem;
-
-      bottom: 1.5rem;
-
-      text-align: right;
-
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       border-radius: 2px;
     }
 
+    /* ============ About ============ */
+    #about { background: var(--panel); }
 
-    .carousel-caption h3 {
-
-      color:
-        white;
-    }
-
-
-    .carousel-caption p {
-
-      color:
-        #c2c2be;
-    }
-
-
-    .carousel-control-prev,
-    .carousel-control-next {
-
-      width: 8%;
-    }
-
-
-    .carousel-indicators [data-bs-target] {
-
-      width: 28px;
-      height: 4px;
-
-      border: 0;
-
-      opacity: 0.4;
-
-      background:
-        #777;
-
-      transition:
-        all 0.25s ease;
-    }
-
-
-    .carousel-indicators .active {
-
-      width: 45px;
-
-      opacity: 1;
-
-      background:
-        var(--yellow);
-    }
-
-
-    /* =========================================================
-       GALLERY
-       ========================================================= */
-
-    #gallery {
-
-      background:
-        var(--black);
-    }
-
-
-    .gallery-card {
-
-      height: 100%;
-
-      background:
-        var(--black-3);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.07);
-
-      border-radius: 3px;
-
+    .about-img {
+      position: relative;
+      border-radius: 1.4rem;
       overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
 
-      cursor: pointer;
-
-      transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+    /* ============ Featured carousel — letterboxed so nothing overflows ============ */
+    .carousel-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 25px 50px -20px rgba(0,0,0,0.65);
     }
 
+    @media (max-width: 768px) {
+      .carousel-frame { aspect-ratio: 4/5; }
+    }
+
+    .carousel-item { height: 100%; }
+
+    .carousel-item .bg-blur {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(28px) brightness(0.5) saturate(1.2);
+      transform: scale(1.15);
+    }
+
+    .carousel-item .fg-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .carousel-caption {
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 1rem;
+      padding: 1.1rem 1.6rem;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      left: 1.2rem;
+      text-align: right;
+    }
+
+    .carousel-control-prev, .carousel-control-next { width: 8%; }
+
+    /* ============ Gallery ============ */
+    .gallery-card {
+      background: var(--card-bg);
+      border-radius: 1.2rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.05);
+      height: 100%;
+      cursor: pointer;
+    }
 
     .gallery-card:hover {
-
-      transform:
-        translateY(-7px);
-
-      border-color:
-        var(--border-yellow);
-
-      box-shadow:
-        var(--shadow-yellow);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -16px rgba(255, 46, 99, 0.25);
+      border-color: rgba(255, 46, 99, 0.3);
     }
-
 
     .gallery-card .img-wrap {
-
       position: relative;
-
-      height: 290px;
-
       overflow: hidden;
-
-      background:
-        #000;
+      height: 280px;
+      background: #000;
     }
-
-
-    .gallery-card .img-wrap::before {
-
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      right: 0;
-
-      width: 5px;
-      height: 100%;
-
-      background:
-        var(--yellow);
-
-      z-index: 3;
-
-      transform:
-        scaleY(0);
-
-      transform-origin: bottom;
-
-      transition:
-        transform 0.3s ease;
-    }
-
-
-    .gallery-card:hover .img-wrap::before {
-
-      transform:
-        scaleY(1);
-    }
-
 
     .gallery-card .img-wrap .bg-blur {
-
       position: absolute;
-
       inset: 0;
-
       background-size: cover;
-
       background-position: center;
+      filter: blur(20px) brightness(0.45) saturate(1.2);
+      transform: scale(1.15);
+    }
 
-      filter:
-        blur(20px)
+    .gallery-card img {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .gallery-card:hover img { transform: scale(1.06); }
+
+    .gallery-card .img-wrap::after {
+      content: '\F52A';
+      font-family: 'bootstrap-icons';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #fff;
+      background: rgba(11,11,15,0.25);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .gallery-card:hover .img-wrap::after { opacity: 1; }
+
+    .gallery-card .card-body { padding: 1.4rem; }
+
+    /* ============ Gallery modal ============ */
+    #galleryModal .modal-content {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.2rem;
+    }
+
+    #galleryModal .modal-img-wrap {
+      background: #000;
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 65vh;
+    }
+
+    #galleryModal .modal-img-wrap img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+    }
+
+    #galleryModal .btn-close { filter: invert(1); }
+
+    @media (max-width: 576px) {
+      #galleryModal .modal-img-wrap,
+      #galleryModal .modal-img-wrap img {
+        max-height: 45vh;
+      }
+    }
+
+    /* ============ Buttons ============ */
+    .btn-gradient {
+      background: linear-gradient(90deg, var(--primary), #ff6b6b);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+
+    .btn-gradient:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 46, 99, 0.4);
+      color: white;
+    }
+
+    /* ============ Contact / CTA ============ */
+    #contact { background: var(--panel); }
+
+    /* ============ Footer — social row instead of a single CTA button ============ */
+    footer {
+      background: #08080b;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2.6rem 0 1.6rem;
+    }
+
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+
+    .social-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eaeaea;
+      font-size: 1.3rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-btn span.txt {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-4px);
+      color: #fff;
+    }
+
+    .social-btn.linkedin:hover { border-color: #0A66C2; color: #0A66C2; }
+    .social-btn.phone:hover { border-color: var(--secondary); color: var(--secondary); }
+    .social-btn.gmail:hover { border-color: #EA4335; color: #EA4335; }
+    .social-btn.whatsapp:hover { border-color: #25D366; color: #25D366; }
+    .social-btn.bale:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ============ Loading ============ */
+    .loading {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+        @media (max-width: 991.98px) {
+  .navbar-collapse {
+    text-align: left;
+     background: black;
+  }
+  .nav-link{
+      padding-left: 50px;
+  }
+
+  .navbar-nav {
+    width: 100%;
+  }
+}
+
+    @media (min-width: 991.98px) {
+  .navbar-collapse {
+    text-align: left;
+    background: none;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <span class="gradient-text">GIANT PROPS</span> 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#about">درباره</a></li>
+          <li class="nav-item"><a class="nav-link" href="#featured">ویژه</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">گالری</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تماس</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="hero-eyebrow"><span class="dot"></span> ساخت وسایل نمایشگاهی و تبلیغاتی</div>
+          <h1>
+            وسایل <span class="gradient-text">غول‌پیکر</span> می‌سازم؛<br>
+            دقیقاً همون چیزی که تصور کردی.
+          </h1>
+          <p class="lead opacity-75">
+            از یه ایده ساده تا یه سازه چند متری که همه رو متوقف می‌کنه؛
+            هر پروژه رو با جزئیات واقعی و مقیاس دقیق می‌سازم.
+          </p>
+          <a href="#gallery" class="btn btn-gradient btn-lg mt-2">
+            دیدن نمونه‌کارها <i class="bi bi-arrow-down-left ms-1"></i>
+          </a>
+
+          <div class="hero-stats">
+            <div>
+              <div class="num">+40</div>
+              <div class="label">پروژه ساخته‌شده</div>
+            </div>
+            <div>
+              <div class="num">۵ سال</div>
+              <div class="label">تجربه ساخت</div>
+            </div>
+            <div>
+              <div class="num">۱۰۰٪</div>
+              <div class="label">سفارشی</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="hero-visual">
+            <img id="heroVisualImg" alt="نمونه کار غول‌پیکر">
+            <div class="dim-tag"> <span class="fill">دسته کنسول X-Box</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-5">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <h2 class="section-title display-6 fw-bold">چرا غول‌پیکر؟</h2>
+          <p class="mb-4 opacity-75">
+            وقتی چیزی رو در مقیاس خیلی بزرگ می‌بینی، ناخودآگاه جذبش می‌شی.
+            این قدرت غول‌پیکرهاست. من با عشق و دقت، وسایلی می‌سازم که نه فقط بزرگ باشن، بلکه حس و حال خاصی منتقل کنن.
+          </p>
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> طراحی و ساخت سفارشی</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> سبک و قابل حمل</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> مناسب فیلم، تبلیغات، ایونت و نمایشگاه</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> جزئیات بالا و کیفیت حرفه‌ای</li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <div class="about-img">
+            <img id="aboutImg" alt="نمونه کار">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Carousel -->
+  <section id="featured" class="py-5 bg-black bg-opacity-25">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title display-6 fw-bold">کارهای ویژه</h2>
+        <p class="opacity-75">چند تا از پروژه‌های مورد علاقه‌ام</p>
+      </div>
+
+      <div id="featuredCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-frame">
+          <div class="carousel-inner h-100" id="carousel-inner">
+            <div class="loading text-center w-100">
+              <div class="spinner-border text-info" role="status"></div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+
+        <div class="carousel-indicators position-relative mt-3" id="carousel-indicators" style="bottom:auto;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section id="gallery" class="py-5">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="section-title display-6 fw-bold">گالری آثار</h2>
+        <p class="opacity-75">روی هر عکس بزن تا بزرگ‌تر ببینیش</p>
+      </div>
+
+      <div class="row g-4" id="gallery-grid">
+        <div class="col-12 loading">
+          <div class="spinner-border text-info" role="status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery modal: opens on click with the full image + description -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="galleryModalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="modal-img-wrap mb-3">
+            <img id="galleryModalImg" src="" alt="">
+          </div>
+          <p class="opacity-75 mb-0" id="galleryModalDesc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact / CTA -->
+  <section id="contact" class="py-5">
+    <div class="container py-5 text-center">
+      <h2 class="display-5 fw-bold mb-4">ایده‌ای داری؟</h2>
+      <p class="lead opacity-75 mb-5 mx-auto" style="max-width: 600px;">
+        اگه می‌خوای یه وسیله غول‌پیکر برای فیلم، تبلیغات، ایونت یا نمایشگاه داشته باشی،
+        بهم پیام بده. با هم می‌سازیمش.
+      </p>
+      <a href="mailto:your-email@example.com" class="btn btn-gradient btn-lg px-5">
+        <i class="bi bi-envelope me-2"></i> تماس با من
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="social-row">
+        <a class="social-btn linkedin" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener" title="لینکدین">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a class="social-btn phone" href="tel:+989120000000" title="تماس تلفنی">
+          <i class="bi bi-telephone-fill"></i>
+        </a>
+        <a class="social-btn gmail" href="mailto:your-email@example.com" title="ایمیل">
+          <i class="bi bi-envelope-fill"></i>
+        </a>
+        <a class="social-btn whatsapp" href="https://wa.me/989120000000" target="_blank" rel="noopener" title="واتساپ">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+        <a class="social-btn bale" href="https://ble.im/your-username" target="_blank" rel="noopener" title="بله">
+          <span class="txt">بله</span>
+        </a>
+      </div>
+      <p class="mb-0 opacity-50 small">
+        © ۱۴۰۵ — ساخته شده با عشق برای وسایل غول‌پیکر
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ============================================
+    // این بخش از فایل data.json می‌خونه
+    // ============================================
+    // اگه آدرس عکس از data.json لود نشد، یه عکس جایگزین می‌ذاریم تا صفحه خراب نمونه
+    function setImageWithFallback(imgEl, src, seed) {
+      imgEl.onerror = () => {
+        imgEl.onerror = null;
+        imgEl.src = `https://picsum.photos/id/${1015 + seed}/900/1100`;
+      };
+      imgEl.src = src;
+    }
+
+    async function loadProjects() {
+      try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+
+        // --- ست‌کردن عکس‌های هیرو و درباره‌ما، هر دو مستقیم از data.json ---
+        const heroImg = document.getElementById('heroVisualImg');
+        const aboutImg = document.getElementById('aboutImg');
+
+        if (data.featured && data.featured.length) {
+          setImageWithFallback(heroImg, `images/${data.featured[0].image}`, 0);
+          // اگه آیتم ویژه دوم وجود داشت برای بخش «درباره» ازش استفاده می‌کنیم،
+          // وگرنه از اولین عکس گالری
+          const aboutSource = data.featured[1] || (data.gallery && data.gallery[0]);
+          if (aboutSource) {
+            setImageWithFallback(aboutImg, `images/${aboutSource.image}`, 1);
+          }
+        }
+
+        // --- کاروسل ویژه ---
+        const carouselInner = document.getElementById('carousel-inner');
+        const indicators = document.getElementById('carousel-indicators');
+        carouselInner.innerHTML = '';
+        indicators.innerHTML = '';
+
+        data.featured.forEach((item, index) => {
+          const imgUrl = `images/${item.image}`;
+          const fallbackUrl = `https://picsum.photos/id/${1016 + index}/1400/900`;
+
+          const slide = document.createElement('div');
+          slide.className = `carousel-item h-100 ${index === 0 ? 'active' : ''}`;
+          slide.innerHTML = `
+            <div class="bg-blur" style="background-image:url('${imgUrl}')"></div>
+            <img src="${imgUrl}" class="fg-img" alt="${item.title}"
+                 onerror="this.src='${fallbackUrl}'; this.previousElementSibling.style.backgroundImage='url(${fallbackUrl})'">
+            <div class="carousel-caption">
+              <h3 class="fw-bold h5 mb-1">${item.title}</h3>
+              <p class="mb-0 small">${item.description}</p>
+            </div>
+          `;
+          carouselInner.appendChild(slide);
+
+          const indicator = document.createElement('button');
+          indicator.type = 'button';
+          indicator.setAttribute('data-bs-target', '#featuredCarousel');
+          indicator.setAttribute('data-bs-slide-to', index);
+          if (index === 0) indicator.classList.add('active');
+          indicators.appendChild(indicator);
+        });
+
+        // --- گالری ---
+        const galleryGrid = document.getElementById('gallery-grid');
+        galleryGrid.innerHTML = '';
+
+        data.gallery.forEach((item) => {
+          const fallbackUrl = `https://picsum.photos/id/${1040 + Math.floor(Math.random() * 20)}/800/600`;
+          const imgUrl = `images/${item.image}`;
+
+          const col = document.createElement('div');
+          col.className = 'col-md-6 col-lg-4';
+          col.innerHTML = `
+            <div class="gallery-card" data-title="${item.title}" data-desc="${item.description}" data-img="${imgUrl}" data-fallback="${fallbackUrl}">
+              <div class="img-wrap">
+                <div class="bg-blur" style="background-image:url('${imgUrl}')"></div>
+                <img src="${imgUrl}" alt="${item.title}"
+                     onerror="this.src='${fallbackUrl}'; this.previousElementSibling.style.backgroundImage='url(${fallbackUrl})'">
+              </div>
+              <div class="card-body">
+                <h5 class="fw-bold mb-2">${item.title}</h5>
+                <p class="small opacity-75 mb-0">${item.description}</p>
+              </div>
+            </div>
+          `;
+          galleryGrid.appendChild(col);
+        });
+
+        // --- باز کردن مودال با کلیک روی هر کارت گالری ---
+        const galleryModalEl = document.getElementById('galleryModal');
+        const galleryModal = new bootstrap.Modal(galleryModalEl);
+        const modalImg = document.getElementById('galleryModalImg');
+        const modalTitle = document.getElementById('galleryModalTitle');
+        const modalDesc = document.getElementById('galleryModalDesc');
+
+        galleryGrid.querySelectorAll('.gallery-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const shownImg = card.querySelector('img');
+            modalImg.src = shownImg.currentSrc || shownImg.src;
+            modalImg.alt = card.dataset.title;
+            modalTitle.textContent = card.dataset.title;
+            modalDesc.textContent = card.dataset.desc;
+            galleryModal.show();
+          });
+        });
+
+      } catch (error) {
+        console.error('خطا در بارگذاری پروژه‌ها:', error);
+        document.getElementById('gallery-grid').innerHTML = `
+          <div class="col-12 text-center text-danger">
+            <p>خطا در بارگذاری داده‌ها. لطفاً فایل data.json را بررسی کنید.</p>
+          </div>
+        `;
+      }
+    }
+
+    // اسکرول به بخش موردنظر با احتساب ارتفاع واقعی نوبار (به جای تکیه به scroll-margin-top که با ارتفاع واقعی نوبار می‌تونه فرق کنه)
+    function setupNav() {
+      const navbar = document.querySelector('.navbar');
+      const navMenu = document.getElementById('navMenu');
+      const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navMenu, { toggle: false });
+
+      document.querySelectorAll('#navMenu .nav-link[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          const targetEl = document.querySelector(targetId);
+
+          if (targetEl) {
+            e.preventDefault();
+            const navHeight = navbar.getBoundingClientRect().height;
+            const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+            history.pushState(null, '', targetId);
+          }
+
+          if (navMenu.classList.contains('show')) {
+            bsCollapse.hide();
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+      setupNav();
+    });
+  </script>
+</body>
+</html>
